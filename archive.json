@@ -1,0 +1,287 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2021-08-10T00:55:38.410756+00:00",
+  "repo": "anr-bmbf-pivot/draft-dns-over-coaps",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "MDU6SXNzdWU5NjM4NTYwODA=",
+      "title": "Create OSCORE section",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/1",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "chrysn"
+      ],
+      "labels": [
+        "enhancement"
+      ],
+      "body": "It *probably* doesn't need to say much more than that it largely does the same as DTLS with the respective security considerations applied -- and that applications can just use whatever they already ship code for.\r\n\r\nPotential aspects to point out for the reader's convenience:\r\n* It's relatively cheap to have a dedicated security context for DNS separate from other applications, making it easy to separate privileges on the server side. In such cases, the URI path that lends itself to the application is `/` as that makes the most compact requests.\r\n* ... anything else?",
+      "createdAt": "2021-08-09T10:29:10Z",
+      "updatedAt": "2021-08-09T10:37:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWU5NjM4NjEyNTQ=",
+      "title": "Is it practical to have the GET version altogether?",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/2",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "All I've found so far on why there's both the GET and the POST version of DoH in HTTP is that GETs are cachable.\r\n\r\nIn CoAP, we have [FETCH](https://datatracker.ietf.org/doc/html/rfc8132), which is just there for cases like this, and does away with both contender's downsides:\r\n* Compared to POST, it's cachable (and safe and thus idempotent)\r\n* Compared to GET, it doesn't need\r\n  * URI template handling (which I'd discourage in an embedded context -- it's reasonably simple here, but I wouldn't want to have to think of the different rules that'd apply if the template occurs in the path or query string), and\r\n  * base64 encoding (which adds both processing and wire overhead).\r\n\r\nThe only upside I see of keeping GET/POST over FETCH is that DoC could then be implemented by just cross-proxying to a DoH server, but given that such a proxy is unconstrained, reasonably straightforward to implement on its own and can thus take load off the constrained client, I advocate going all FETCH.",
+      "createdAt": "2021-08-09T10:36:35Z",
+      "updatedAt": "2021-08-09T11:37:38Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "miri64",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I was also thinking about getting rid of GET. However, apart from the cross-proxying argument you gave, I also wanted to provide a method for \"legacy CoAP\" (so a CoAP implementation where FETCH is not implemented).\r\n\r\nBut then again, FETCH-support is relatively easy to deploy on the client side (you literally just need to provide the number for it). Mhh...",
+          "createdAt": "2021-08-09T11:08:38Z",
+          "updatedAt": "2021-08-09T11:08:38Z"
+        },
+        {
+          "author": "miri64",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> * URI template handling (which I'd discourage in an embedded context -- it's reasonably simple here, but I wouldn't want to have to think of the different rules that'd apply if the template occurs in the path or query string), and\r\n\r\nIMHO a URI template processor does not need to have more complexity than say a URI parser (which in some cases we need with CoAP). The one [I provided for RIOT](https://github.com/RIOT-OS/RIOT/pull/16702) takes ~400 bytes of ROM on a Cortex-M0. Once that's there, the question of adding a URI-Query option is just a matter of checking if the `dns` query is there or not when the URI template is resolved.",
+          "createdAt": "2021-08-09T11:13:06Z",
+          "updatedAt": "2021-08-09T11:13:41Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "There haven't been implementer complaints about FETCH in 2019 when\nOSCORE was finalized, which indicates that FETCH was indeed simple to\nsupport.\n\n> IMHO a URI template processor does not need to have more complexity\n> than say a URI parser (which in some cases we need with CoAP).\n\nI have hopes that many CoAP clients can do without a URI parser when the\nefforts of CoRAL and [CRI](https://datatracker.ietf.org/doc/draft-ietf-core-href/) bear fruit.\n\n> The one [I provided for\n> RIOT](https://github.com/RIOT-OS/RIOT/pull/16702) takes ~400 bytes of\n> ROM on a Cortex-M0. Once that's there the question of adding a\n> URI-Query option is just a matter of checking if the `dns` query is\n> there or not when the URI template is resolved.\n\nThat does indeed look like a comprehensive implementation testing for\nseveral of the pitfalls. But it's still 400 byte (and a lot of\ncode-to-be-maintained), and compatibility dangers from implementers who\ndon't go all the way but just `s/{?dns}/?dns=$QUERY/` because that's all\nthey've ever seen -- especially when the alternative is so much easier.\n",
+          "createdAt": "2021-08-09T11:37:38Z",
+          "updatedAt": "2021-08-09T11:37:38Z"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "MDU6SXNzdWU5NjM5OTY0MTM=",
+      "title": "Request text duplication",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/4",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Using the application/dns-message format means following general DNS practice that the request is more or less echoed in the response. (The queries are part of the response). This makes sense in DNS where there's only the transaction ID, but less so in CoAP where there's cryptographic request/response protection.\r\n\r\nAre there any mechanisms of DNS that'd allow us to elide the queries from the response?\r\n\r\nIf so, I suggest we recommend them with some level of normativity.\r\n\r\nIf not, then this probably won't change short of using alternative serializations (which I understand to be in scope for add-ons in this document), but should be pointed out, stating that wire efficiency is traded here for cognitive (transferring established DNS concepts) and implementation (where responses are fed to a local DNS-ish processor) complexity.",
+      "createdAt": "2021-08-09T13:27:09Z",
+      "updatedAt": "2021-08-09T14:23:40Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Looking a bit deeper into how DNS packets are made up, I learned that there is internal lookup compression used when a name's text starts with 0b11 (where otherwise there are zeros from a label being less than 64 byte long). I found no specification that'd describe other use of other patterns there (say, a 0b01 that'd indicate a string offset in the request rather the response), so probably there's no such specification and we fall to the \"If not\" branch.\r\n\r\n(It would barely pay to send responses without the requests without such cross-references, as without the internal lookup the response records would just again contain all the long text from the requests).",
+          "createdAt": "2021-08-09T13:51:38Z",
+          "updatedAt": "2021-08-09T13:51:38Z"
+        },
+        {
+          "author": "miri64",
+          "authorAssociation": "COLLABORATOR",
+          "body": "One could just set `qdcount` field of a DNS response to 0 and not include the question section. All information needed to figure out to what question the record is an answer for should be present in the answer section. However, any change to the message format makes the implementation of a simple DoC-to-DNS-proxy more complicated. Currently such a proxy would only need to replace the transaction ID of the DNS query and response (in case the client implementation decides to honor the SHALL on setting that field to 0 for cache-friendlyness) as the only modification to the DNS messages.",
+          "createdAt": "2021-08-09T13:59:06Z",
+          "updatedAt": "2021-08-09T13:59:06Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "With the compression inside the response, that alone won't do much good; it'd turn a response that currently has a `c0 xx` name reference into one that repeats the name just again.\r\n\r\nAs for implementation complexity, the nice thing about application/dns-message is that a simpler server can just not do any of these tricks -- but alas, there seem to be no existing viable tricks.",
+          "createdAt": "2021-08-09T14:23:40Z",
+          "updatedAt": "2021-08-09T14:23:40Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "MDU6SXNzdWU5NjQwNDQ3NjE=",
+      "title": "TTL vs. Max-Age",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/5",
+      "state": "OPEN",
+      "author": "chrysn",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Interpreting times relative to a cached request's request time is tricky, and AFAIK there is no good precedent in CoRE. ([SenML](https://www.rfc-editor.org/rfc/rfc8428.html) speaks of 'roughly \"now\"', without talking about Max-Age). Trouble arises when there's an application-unaware caching proxy on the line (which is generally to be expected).\r\n\r\nThe simple thing to do (and I think that's the direction currently taken, but just not in text or I missed it) is that clients generally ignore the stated DNS lifetimes, and only use the request for Max-Age. The downside here is that a) information about longer-lived parts of the response is lost (not sure if that's an issue), and b) that the response can't be plugged as-is into a local DNS system (for that'd see the times and happily cache for 5 more minutes, even though the response may have been sitting in a cache for almost that time).\r\n\r\nOptions IMO are:\r\n* State that we want it to behave like this, and that any client is to consider all lifetimes in the response clamped to Max-Age.\r\n* About the same, but ask it from the server. (\"MUST NOT set a longer Max-Age than the shortest lifetime, and MUST zero all lifetimes\").\r\n* (Most complex server-side, but still easy to use minimally on the client and IMO most powerful) Interpret all times relative to the expiry of the cache, and ask DoC servers to pick a Max-Age such that the smallest lifetime become zero (or as small as practical).\r\n  This allows an unaware cache (typically in a proxy) to keep the response available for as long as it is usable, and still allows aware clients to push the limits.\r\n\r\nIf you even want to explore the 3rd option, I can start a discussion on core@ietf.org on whether taking the max-age expiry as a reference point is a practical pattern.",
+      "createdAt": "2021-08-09T14:16:45Z",
+      "updatedAt": "2021-08-09T15:05:47Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "miri64",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In [DoH](https://datatracker.ietf.org/doc/html/rfc8484#section-5.1) this is accounted for by using the Age header.\r\n\r\n>    [RFC7234] when calculating the DNS TTL of a response.  For example,\r\n>    if an RRset is received with a DNS TTL of 600, but the Age header\r\n>    field indicates that the response has been cached for 250 seconds,\r\n>    the remaining lifetime of the RRset is 350 seconds.  This requirement\r\n>    applies to both DoH client HTTP caches and DoH client DNS caches.\r\n\r\nCouldn't we do something similar with `Max-Age`? If `Max-Age` is lesser than the smallest TTL in the response, the difference between that smallest TTL and the `Max-Age` option value must be subtracted from all TTLs in the DNS response by the client.",
+          "createdAt": "2021-08-09T14:45:32Z",
+          "updatedAt": "2021-08-09T14:51:16Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think that'd amount to the same thing, and may be easier to implement. Asking on core@ for experience there.",
+          "createdAt": "2021-08-09T14:49:23Z",
+          "updatedAt": "2021-08-09T14:49:23Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I'd assume that it's easier for a client to add Max-Age than to traverse all records to find the difference, but let's see what CoRE says.",
+          "createdAt": "2021-08-09T14:59:58Z",
+          "updatedAt": "2021-08-09T14:59:58Z"
+        },
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "See also https://mailarchive.ietf.org/arch/msg/core/CzRQTARwPgIwJN0s_kmlLRCNMKY",
+          "createdAt": "2021-08-09T15:05:47Z",
+          "updatedAt": "2021-08-09T15:05:47Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "MDU6SXNzdWU5NjQxNDE0NjI=",
+      "title": "Retransmission Issue",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/6",
+      "state": "OPEN",
+      "author": "cgundogan",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": ">General CoAP proxy problem, but what to do when DoC server is a DNS proxy, response came not yet in but retransmission by DoC client was received\r\n\r\nThe CoAP spec does not really flesh out \"corner cases\"  of certain proxy operations.  In previous work, we addressed this retransmission issue in two different ways:\r\n\r\n1. a proxy immediately sends an empty response, thereby stopping the retransmission of the DoC client.  Any (later) response from the proxy SHOULD then be confirmable.\r\n2. a proxy keeps request state and aggregates request retransmissions from downstream (similar to what NDN is doing).  Therefore, no additional retransmissions propagate upstream.",
+      "createdAt": "2021-08-09T15:58:56Z",
+      "updatedAt": "2021-08-09T16:08:05Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "\"General CoAP proxy problem\" ... well, that's exactly what empty ACKs do and are designed for. Depending on the complexity of the proxy, the ACK can be sent right away, or a bit later depending on the retransmission characteristics. Working with CONs without keeping state isn't much of an option anyway.",
+          "createdAt": "2021-08-09T16:02:59Z",
+          "updatedAt": "2021-08-09T16:02:59Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWU5NjQzOTc4OTU=",
+      "title": "overview figure",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/issues/7",
+      "state": "OPEN",
+      "author": "waehlisch",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "the introduction should include an overview figure that presents all important components. the current state makes it surprisingly hard to follow. for example, reading the Introduction and then Selection of DoC Server, i doubt that the reader easily understands what a URI template is and why it is needed. a decent figure could easily close this gap. (i know that RFC 8484 is not a good poster child here.)",
+      "createdAt": "2021-08-09T21:19:36Z",
+      "updatedAt": "2021-08-09T21:19:36Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 3,
+      "id": "MDExOlB1bGxSZXF1ZXN0NzA2NTEwOTgy",
+      "title": "Text for ETag",
+      "url": "https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/pull/3",
+      "state": "MERGED",
+      "author": "chrysn",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-08-09T13:14:17Z",
+      "updatedAt": "2021-08-09T14:29:04Z",
+      "baseRepository": "anr-bmbf-pivot/draft-dns-over-coaps",
+      "baseRefName": "main",
+      "baseRefOid": "045462286afadbcacbf3ec4ad7a7dafe48733a1e",
+      "headRepository": "anr-bmbf-pivot/draft-dns-over-coaps",
+      "headRefName": "etag",
+      "headRefOid": "53e31c8e315e6410dbebb108c32bb2ed04e891f6",
+      "closedAt": "2021-08-09T14:29:00Z",
+      "mergedAt": "2021-08-09T14:29:00Z",
+      "mergedBy": "miri64",
+      "mergeCommit": {
+        "oid": "e007e87399cfba2963de64e69cd5b78efb7e4c80"
+      },
+      "comments": [
+        {
+          "author": "chrysn",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Yes, moved. (Positioning / text flow is probably not perfect, but then again, the caching/proxy chapter will likely get more structure anyway as it grows).",
+          "createdAt": "2021-08-09T14:20:12Z",
+          "updatedAt": "2021-08-09T14:20:12Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzI1MzY5MTQ0",
+          "commit": {
+            "abbreviatedOid": "85cac16"
+          },
+          "author": "miri64",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Now that the Caching section is [somewhat written out](https://github.com/anr-bmbf-pivot/draft-dns-over-coaps/commit/c0fed40ba3303f0dd69a81a7dfea9f9ea7532ad8), does it make sense to move it there?",
+          "createdAt": "2021-08-09T13:19:00Z",
+          "updatedAt": "2021-08-09T13:19:00Z",
+          "comments": []
+        }
+      ]
+    }
+  ]
+}
