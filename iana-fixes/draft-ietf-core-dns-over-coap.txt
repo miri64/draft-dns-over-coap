@@ -573,8 +573,8 @@ Table of Contents
        +===============+=========+===============+=================+
        | Number        | Name    | Meaning       | Reference       |
        +===============+=========+===============+=================+
-       | 9 (suggested) | docpath | DNS over CoAP | [TBD-this-spec] |
-       |               |         | resource path | Section 3       |
+       | 9 (suggested) | docpath | DNS over CoAP | [TBD-this-spec, |
+       |               |         | resource path | Section 3]      |
        +---------------+---------+---------------+-----------------+
 
                                   Table 1
