@@ -5,14 +5,14 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                TU Dresden
 Intended status: Standards Track                               C. Amsüss
-Expires: 23 December 2024                                               
+Expires: 30 December 2024                                               
                                                              C. Gündoğan
                                                      Huawei Technologies
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                         TU Dresden & Barkhausen Institut
-                                                            21 June 2024
+                                                            28 June 2024
 
 
                           DNS over CoAP (DoC)
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 December 2024.
+   This Internet-Draft will expire on 30 December 2024.
 
 Copyright Notice
 
@@ -254,24 +254,36 @@ Table of Contents
    any DoC request to the CoAP resource identifier constructed from the
    SvcParams including "docpath".  A rough construction algorithm could
    be as follows, going through the provided records in order of their
-   priority. - If the "alpn" SvcParam value for the service is "coap",
-   construct a CoAP request for CoAP over TCP, if it is "co", construct
-   one for CoAP over DTLS. - The destination address for the request
-   should be taken from additional information about the target, e.g.
-   from an AAAA record associated to the target or from am "ipv6hint"
-   SvcParam value, or, as a fallback, by querying an address for the
-   queried host name of the SVCB record. - The destination port for the
-   address is taken from the "port" SvcParam value, if present.
-   Otherwise, take the default port of the CoAP transport. - Set the
-   queried host name of SVCB record in the URI-Host option. - For each
-   element in the CBOR sequence of the "docpath" SvcParam value, add a
-   Uri-Path option to the request. - If a "port" SvcParam value is
-   provided or if a port was queried, and if either differs from either
-   the default port of the transport or the destination port selected
-   above, set that port in the URI-Port option. - If this request
-   receives a response, use that for future DoC queries, until it
-   becomes unreachable.  If not, or if it becomes unreachable, repeat
-   with the SVCB record with the next highest priority.
+   priority.
+
+   *  If the "alpn" SvcParam value for the service is "coap", construct
+      a CoAP request for CoAP over TCP, if it is "co", construct one for
+      CoAP over DTLS.
+
+   *  The destination address for the request should be taken from
+      additional information about the target, e.g. from an AAAA record
+      associated to the target or from am "ipv6hint" SvcParam value, or,
+      as a fallback, by querying an address for the queried host name of
+      the SVCB record.
+
+   *  The destination port for the address is taken from the "port"
+      SvcParam value, if present.  Otherwise, take the default port of
+      the CoAP transport.
+
+   *  Set the queried host name of SVCB record in the URI-Host option.
+
+   *  For each element in the CBOR sequence of the "docpath" SvcParam
+      value, add a Uri-Path option to the request.
+
+   *  If a "port" SvcParam value is provided or if a port was queried,
+      and if either differs from either the default port of the
+      transport or the destination port selected above, set that port in
+      the URI-Port option.
+
+   *  If this request receives a response, use that for future DoC
+      queries, until it becomes unreachable.  If not, or if it becomes
+      unreachable, repeat with the SVCB record with the next highest
+      priority.
 
    A more generalized construction algorithm can be found in
    [I-D.ietf-core-transport-indication].
