@@ -75,7 +75,7 @@ Table of Contents
    2.  Terminology
    3.  Selection of a DoC Server
      3.1.  Discovery by Resource Type
-       3.1.1.  Discovery using SVCB Resource Records or DNR
+     3.2.  Discovery using SVCB Resource Records or DNR
    4.  Basic Message Exchange
      4.1.  The "application/dns-message" Content-Format
      4.2.  DNS Queries in CoAP Requests
@@ -223,7 +223,7 @@ Table of Contents
    in [RFC6690]), the resource type "core.dns" can be used to identify a
    generic DNS resolver that is available to the client.
 
-3.1.1.  Discovery using SVCB Resource Records or DNR
+3.2.  Discovery using SVCB Resource Records or DNR
 
    A DoC server can also be discovered using SVCB Resource Records (RR)
    [RFC9460], [RFC9461] or DNR Service Parameters [RFC9463].
