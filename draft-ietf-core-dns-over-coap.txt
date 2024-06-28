@@ -266,18 +266,15 @@ Table of Contents
 
    *  The destination address for the request should be taken from
       additional information about the target, e.g. from an AAAA record
-      associated to the target or from an "ipv6hint" SvcParam value, or,
-      as a fallback, by querying an address for the queried host name of
-      the SVCB record.
+      associated to the target name or from an "ipv6hint" SvcParam
+      value, or, as a fallback, by querying an address for the target
+      name of the SVCB record.
 
    *  The destination port for the address is taken from the "port"
       SvcParam value, if present.  Otherwise, take the default port of
       the CoAP transport.
 
-   *  Set the target
-      // Check if this is correct.  Might be the query name.
-      //
-      // -- Martine of SVCB record in the URI-Host option.
+   *  Set the target name of SVCB record in the URI-Host option.
 
    *  For each element in the CBOR sequence of the "docpath" SvcParam
       value, add a Uri-Path option to the request.
