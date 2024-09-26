@@ -5,14 +5,14 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                TU Dresden
 Intended status: Standards Track                               C. Amsüss
-Expires: 24 March 2025                                                  
+Expires: 30 March 2025                                                  
                                                              C. Gündoğan
                                                      Huawei Technologies
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                         TU Dresden & Barkhausen Institut
-                                                       20 September 2024
+                                                       26 September 2024
 
 
                           DNS over CoAP (DoC)
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 March 2025.
+   This Internet-Draft will expire on 30 March 2025.
 
 Copyright Notice
 
@@ -526,13 +526,14 @@ Table of Contents
 
    Level of maturity:  production
 
-   Version compability:  draft-ietf-core-dns-over-coap-04
+   Version compability:  draft-ietf-core-dns-over-coap-08
 
    License:  LGPL-2.1
 
-   Contact information:  Martine Lenders <m.lenders@fu-berlin.de>
+   Contact information:  Martine S.  Lenders <martine.lenders@tu-
+      dresden.de>
 
-   Last update of this information:  October 2023
+   Last update of this information:  September 2024
 
 7.2.  DoC Server
 
@@ -541,13 +542,14 @@ Table of Contents
 
    Level of maturity:  production
 
-   Version compability:  draft-ietf-core-dns-over-coap-04
+   Version compability:  draft-ietf-core-dns-over-coap-08
 
    License:  MIT
 
-   Contact information:  Martine Lenders <m.lenders@fu-berlin.de>
+   Contact information:  Martine S.  Lenders <martine.lenders@tu-
+      dresden.de>
 
-   Last update of this information:  October 2023
+   Last update of this information:  September 2024
 
 8.  Security Considerations
 
