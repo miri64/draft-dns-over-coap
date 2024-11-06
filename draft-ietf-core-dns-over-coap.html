@@ -17,17 +17,17 @@ by DTLS-Secured CoAP (CoAPS) or Object Security for Constrained RESTful
 Environments (OSCORE) to provide encrypted DNS message exchange for
 constrained devices in the Internet of Things (IoT). 
     " name="description">
-<meta content="xml2rfc 3.23.2" name="generator">
+<meta content="xml2rfc 3.24.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-core-dns-over-coap-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.2
+  xml2rfc 3.24.0
     Python 3.12.7
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.4
-    lxml 4.9.4
+    lxml 5.3.0
     platformdirs 4.3.6
     pycountry 22.3.5
     PyYAML 6.0.1
@@ -169,31 +169,6 @@ constrained devices in the Internet of Things (IoT).
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -210,6 +185,77 @@ constrained devices in the Internet of Things (IoT).
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -222,6 +268,7 @@ constrained devices in the Internet of Things (IoT).
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -240,8 +287,8 @@ body {
 
 /* headings */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -649,6 +696,12 @@ sub, sup {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
 }
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+  }
+}
 #toc nav ul {
   margin: 0 0.5em 0 0;
   padding: 0;
@@ -1032,11 +1085,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">DoC</td>
-<td class="right">October 2024</td>
+<td class="right">November 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lenders, et al.</td>
-<td class="center">Expires 24 April 2025</td>
+<td class="center">Expires 10 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1049,12 +1102,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-core-dns-over-coap-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-21" class="published">21 October 2024</time>
+<time datetime="2024-11-06" class="published">6 November 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-24">24 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-05-10">10 May 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1118,7 +1171,7 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1494,7 +1547,7 @@ similar CBOR data item. This path format was chosen to coincide with the path re
 (<span>[<a href="#I-D.ietf-core-href" class="cite xref">I-D.ietf-core-href</a>]</span>). Furthermore, it is easily transferable into a sequence of CoAP Uri-Path options by
 mapping the initial byte of any present CBOR text string (see <span>[<a href="#RFC8949" class="cite xref">RFC8949</a>], <a href="https://rfc-editor.org/rfc/rfc8949#section-3" class="relref">Section 3</a></span>) into the Option
 Delta and Option Length of the CoAP option, provided these CBOR text strings are all of a length
-between 0 and 12 octets (see <span>[<a href="#RFC7252" class="cite xref">RFC7252</a>], <a href="https://rfc-editor.org/rfc/rfc7252#section-3.1" class="relref">Section 3.1</a></span>). Likewise, it can be transfered into a URI
+between 0 and 12 octets (see <span>[<a href="#RFC7252" class="cite xref">RFC7252</a>], <a href="https://rfc-editor.org/rfc/rfc7252#section-3.1" class="relref">Section 3.1</a></span>). Likewise, it can be transferred into a URI
 path-abempty form (see <span>[<a href="#RFC3986" class="cite xref">RFC3986</a>], <a href="https://rfc-editor.org/rfc/rfc3986#section-3.3" class="relref">Section 3.3</a></span>) by replacing the initial byte of any present CBOR text
 string with the "/" character, provided these CBOR text strings are all of a length lesser than 24
 octets and do not contain bytes that need escaping.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
@@ -1509,7 +1562,7 @@ CoAP transport are out of scope of this document.<a href="#section-3.2-4.1.1" cl
 </li>
           <li class="normal" id="section-3.2-4.2">
             <p id="section-3.2-4.2.1">The destination address for the request should be taken from additional information about the
-target, e.g. from an AAAA record associated to the target name or from an "ipv6hint" SvcParam
+target, e.g., from an AAAA record associated to the target name or from an "ipv6hint" SvcParam
 value, or, as a fallback, by querying an address for the target name of the SVCB record.<a href="#section-3.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-4.3">
@@ -1798,9 +1851,9 @@ in the IoT operating system RIOT</a>.<a href="#section-7.1-1" class="pilcrow">¶
             <p id="section-7.1-2.2.1">production<a href="#section-7.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-7.1-2.3">Version compability:</dt>
+<dt id="section-7.1-2.3">Version compatibility:</dt>
           <dd style="margin-left: 1.5em" id="section-7.1-2.4">
-            <p id="section-7.1-2.4.1">draft-ietf-core-dns-over-coap-08<a href="#section-7.1-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-7.1-2.4.1">draft-ietf-core-dns-over-coap-09<a href="#section-7.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.1-2.5">License:</dt>
@@ -1834,9 +1887,9 @@ Python</a>.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
             <p id="section-7.2-2.2.1">production<a href="#section-7.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-7.2-2.3">Version compability:</dt>
+<dt id="section-7.2-2.3">Version compatibility:</dt>
           <dd style="margin-left: 1.5em" id="section-7.2-2.4">
-            <p id="section-7.2-2.4.1">draft-ietf-core-dns-over-coap-08<a href="#section-7.2-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-7.2-2.4.1">draft-ietf-core-dns-over-coap-09<a href="#section-7.2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.2-2.5">License:</dt>
@@ -1908,8 +1961,12 @@ type from the "Media Types" registry (see <span>[<a href="#RFC8484" class="cite 
 <p id="section-9.2-1">This document adds the following entry to the Service Parameter Keys (SvcParamKeys) registry in the
 DNS Service Bindings (SVCB) registry group.
 The definition of this parameter can be found in <a href="#sec_doc-server-selection" class="auto internal xref">Section 3</a>.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+<span id="name-values-for-svcparamkeys"></span><div id="tab-svc-param-keys">
 <table class="center" id="table-1">
-          <caption><a href="#table-1" class="selfRef">Table 1</a></caption>
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-values-for-svcparamkeys" class="selfRef">Values for SvcParamKeys</a>
+          </caption>
 <thead>
             <tr>
               <th class="text-left" rowspan="1" colspan="1">Number</th>
@@ -1920,13 +1977,14 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">9 (suggested)</td>
+              <td class="text-left" rowspan="1" colspan="1">10 (suggested)</td>
               <td class="text-left" rowspan="1" colspan="1">docpath</td>
               <td class="text-left" rowspan="1" colspan="1">DNS over CoAP resource path</td>
               <td class="text-left" rowspan="1" colspan="1">[TBD-this-spec, <a href="#sec_doc-server-selection" class="auto internal xref">Section 3</a>]</td>
             </tr>
           </tbody>
         </table>
+</div>
 </section>
 </div>
 <div id="new-coredns-resource-type">
@@ -2037,7 +2095,7 @@ I-D.ietf-core-corr-clar-00 (now bormann-core-clar-05).</span>
 <dd class="break"></dd>
 <dt id="I-D.ietf-core-transport-indication">[I-D.ietf-core-transport-indication]</dt>
         <dd>
-<span class="refAuthor">Amsüss, C.</span> and <span class="refAuthor">M. S. Lenders</span>, <span class="refTitle">"CoAP Transport Indication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-transport-indication-06</span>, <time datetime="2024-07-08" class="refDate">8 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-transport-indication-06">https://datatracker.ietf.org/doc/html/draft-ietf-core-transport-indication-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Amsüss, C.</span> and <span class="refAuthor">M. S. Lenders</span>, <span class="refTitle">"CoAP Transport Indication"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-transport-indication-07</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-transport-indication-07">https://datatracker.ietf.org/doc/html/draft-ietf-core-transport-indication-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.lenders-core-dnr">[I-D.lenders-core-dnr]</dt>
         <dd>
@@ -2195,7 +2253,7 @@ paper "Securing Name Resolution in the IoT: DNS over CoAP" <span>[<a href="#DoC-
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.5-1.1">
-            <p id="appendix-B.5-1.1.1">Add note on cachable OSCORE<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.5-1.1.1">Add note on cacheable OSCORE<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.5-1.2">
             <p id="appendix-B.5-1.2.1">Address early IANA review<a href="#appendix-B.5-1.2.1" class="pilcrow">¶</a></p>
