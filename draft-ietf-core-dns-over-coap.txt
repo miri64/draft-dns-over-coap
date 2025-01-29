@@ -563,9 +563,9 @@ Table of Contents
 
    General CoAP security considerations apply.  Exceeding those in
    Section 11 of [RFC7252], the request patterns of DoC make it likely
-   that long-lived security contexts are maintained: [amp-0rtt] goes
-   into more detail on what needs to be done when those are resumed from
-   a new endpoint.
+   that long-lived security contexts are maintained: Section 2.6 of
+   [I-D.ietf-core-corr-clar] goes into more detail on what needs to be
+   done when those are resumed from a new endpoint.
 
    When using unencrypted CoAP (see Section 6), setting the ID of a DNS
    message to 0 as specified in Section 4.2.2 opens the DNS cache of a
@@ -696,15 +696,6 @@ Table of Contents
 
 10.2.  Informative References
 
-   [amp-0rtt] "PR #40 "Amplification and 0-RTT" on "CoAP: Corrections
-              and Clarifications"", 25 September 2024,
-              <https://github.com/core-wg/corrclar/pull/40>.  Note: It
-              is expected that that PR will be merged way ahead of this
-              document's publication; at the next revision, this
-              reference will be replaced with a reference to what will
-              by then most likely be I-D.ietf- core-corr-clar-00 (now
-              bormann-core-clar-05).
-
    [DoC-paper]
               Lenders, M., Amsüss, C., Gündogan, C., Nawrocki, M.,
               Schmidt, T., and M. Wählisch, "Securing Name Resolution in
@@ -719,6 +710,13 @@ Table of Contents
               oscore-10, 8 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-amsuess-core-
               cachable-oscore-10>.
+
+   [I-D.ietf-core-corr-clar]
+              Bormann, C., "Constrained Application Protocol (CoAP):
+              Corrections and Clarifications", Work in Progress,
+              Internet-Draft, draft-ietf-core-corr-clar-01, 18 December
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              core-corr-clar-01>.
 
    [I-D.ietf-core-href]
               Bormann, C. and H. Birkholz, "Constrained Resource
