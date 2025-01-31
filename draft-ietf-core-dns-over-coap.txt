@@ -5,14 +5,14 @@
 CoRE                                                       M. S. Lenders
 Internet-Draft                                                TU Dresden
 Intended status: Standards Track                               C. Amsüss
-Expires: 3 August 2025                                                  
+Expires: 4 August 2025                                                  
                                                              C. Gündoğan
                                                         NeuralAgent GmbH
                                                            T. C. Schmidt
                                                              HAW Hamburg
                                                              M. Wählisch
                                         TU Dresden & Barkhausen Institut
-                                                         30 January 2025
+                                                         31 January 2025
 
 
                           DNS over CoAP (DoC)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 August 2025.
+   This Internet-Draft will expire on 4 August 2025.
 
 Copyright Notice
 
@@ -91,7 +91,8 @@ Table of Contents
      4.3.  DNS Responses in CoAP Responses
        4.3.1.  Response Codes and Handling DNS and CoAP errors
        4.3.2.  Support of CoAP Caching
-       4.3.3.  Examples
+       4.3.3.  DNS Update
+       4.3.4.  Examples
    5.  CoAP/CoRE Integration
      5.1.  DNS Push
      5.2.  OSCORE
@@ -110,16 +111,17 @@ Table of Contents
      10.2.  Informative References
    Appendix A.  Evaluation
    Appendix B.  Change Log
-     B.1.  Since draft-ietf-core-dns-over-coap-08
-     B.2.  Since draft-ietf-core-dns-over-coap-07
-     B.3.  Since draft-ietf-core-dns-over-coap-06
-     B.4.  Since draft-ietf-core-dns-over-coap-05
-     B.5.  Since draft-ietf-core-dns-over-coap-04
-     B.6.  Since draft-ietf-core-dns-over-coap-03
-     B.7.  Since draft-ietf-core-dns-over-coap-02
-     B.8.  Since draft-ietf-core-dns-over-coap-01
-     B.9.  Since draft-ietf-core-dns-over-coap-00
-     B.10. Since draft-lenders-dns-over-coap-04
+     B.1.  Since draft-ietf-core-dns-over-coap-09
+     B.2.  Since draft-ietf-core-dns-over-coap-08
+     B.3.  Since draft-ietf-core-dns-over-coap-07
+     B.4.  Since draft-ietf-core-dns-over-coap-06
+     B.5.  Since draft-ietf-core-dns-over-coap-05
+     B.6.  Since draft-ietf-core-dns-over-coap-04
+     B.7.  Since draft-ietf-core-dns-over-coap-03
+     B.8.  Since draft-ietf-core-dns-over-coap-02
+     B.9.  Since draft-ietf-core-dns-over-coap-01
+     B.10. Since draft-ietf-core-dns-over-coap-00
+     B.11. Since draft-lenders-dns-over-coap-04
    Acknowledgments
    Authors' Addresses
 
@@ -418,7 +420,14 @@ Table of Contents
    in the response to 0 and set the TTLs at the DoC client to the value
    of the Max-Age option.
 
-4.3.3.  Examples
+4.3.3.  DNS Update
+
+   Until future work provides considerations for the for DNS Update
+   [RFC2136], a DoC server that receives a query with the UPDATE opcode
+   SHOULD indicate in its response that it does not implement DNS
+   Update, see [RFC2136].
+
+4.3.4.  Examples
 
    The following examples illustrate the replies to the query
    "example.org.  IN AAAA record", recursion turned on.  Successful
@@ -740,6 +749,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-lenders-core-
               dnr-03>.
 
+   [RFC2136]  Vixie, P., Ed., Thomson, S., Rekhter, Y., and J. Bound,
+              "Dynamic Updates in the Domain Name System (DNS UPDATE)",
+              RFC 2136, DOI 10.17487/RFC2136, April 1997,
+              <https://www.rfc-editor.org/rfc/rfc2136>.
+
    [RFC3986]  Berners-Lee, T., Fielding, R., and L. Masinter, "Uniform
               Resource Identifier (URI): Generic Syntax", STD 66,
               RFC 3986, DOI 10.17487/RFC3986, January 2005,
@@ -809,13 +823,24 @@ Appendix A.  Evaluation
 
 Appendix B.  Change Log
 
-B.1.  Since draft-ietf-core-dns-over-coap-08
+B.1.  Since draft-ietf-core-dns-over-coap-09
+      (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
+      coap-09)
+
+   *  Update SVCB SvcParamKey
+
+   *  Update corr-clar reference
+
+   *  Add reference to DNS Update (Section 4.3.3), clarify that it is
+      currently not considered
+
+B.2.  Since draft-ietf-core-dns-over-coap-08
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-08)
 
    *  Update Cenk's Affiliation
 
-B.2.  Since draft-ietf-core-dns-over-coap-07
+B.3.  Since draft-ietf-core-dns-over-coap-07
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-07)
 
@@ -829,7 +854,7 @@ B.2.  Since draft-ietf-core-dns-over-coap-07
 
    *  Implementation Status: Update to current version
 
-B.3.  Since draft-ietf-core-dns-over-coap-06
+B.4.  Since draft-ietf-core-dns-over-coap-06
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-06)
 
@@ -844,13 +869,13 @@ B.3.  Since draft-ietf-core-dns-over-coap-06
 
       -  IANA: unify self references
 
-B.4.  Since draft-ietf-core-dns-over-coap-05
+B.5.  Since draft-ietf-core-dns-over-coap-05
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-05)
 
    *  Add references to relevant SVCB/DNR RFCs and drafts
 
-B.5.  Since draft-ietf-core-dns-over-coap-04
+B.6.  Since draft-ietf-core-dns-over-coap-04
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-04)
 
@@ -858,7 +883,7 @@ B.5.  Since draft-ietf-core-dns-over-coap-04
 
    *  Address early IANA review
 
-B.6.  Since draft-ietf-core-dns-over-coap-03
+B.7.  Since draft-ietf-core-dns-over-coap-03
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-03)
 
@@ -867,7 +892,7 @@ B.6.  Since draft-ietf-core-dns-over-coap-03
 
    *  Add Appendix A on evaluation
 
-B.7.  Since draft-ietf-core-dns-over-coap-02
+B.8.  Since draft-ietf-core-dns-over-coap-02
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-02)
 
@@ -889,7 +914,7 @@ B.7.  Since draft-ietf-core-dns-over-coap-02
 
    *  Don't call OSCORE end-to-end encrypted
 
-B.8.  Since draft-ietf-core-dns-over-coap-01
+B.9.  Since draft-ietf-core-dns-over-coap-01
       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
       coap-01)
 
@@ -902,9 +927,9 @@ B.8.  Since draft-ietf-core-dns-over-coap-01
 
    *  Add appendix on reference implementation
 
-B.9.  Since draft-ietf-core-dns-over-coap-00
-      (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
-      coap-00)
+B.10.  Since draft-ietf-core-dns-over-coap-00
+       (https://datatracker.ietf.org/doc/html/draft-ietf-core-dns-over-
+       coap-00)
 
    *  SVGify ASCII art
 
@@ -916,7 +941,7 @@ B.9.  Since draft-ietf-core-dns-over-coap-00
 
    *  Add security considerations on ID=0
 
-B.10.  Since draft-lenders-dns-over-coap-04
+B.11.  Since draft-lenders-dns-over-coap-04
        (https://datatracker.ietf.org/doc/html/draft-lenders-dns-over-
        coap-04)
 
