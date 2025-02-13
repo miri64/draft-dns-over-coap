@@ -340,7 +340,7 @@ Table of Contents
    The DoC client SHOULD set the ID field of the DNS header always to 0
    to enable a CoAP cache (e.g., a CoAP proxy en-route) to respond to
    the same DNS queries with a cache entry.  This ensures that the CoAP
-   Cache-Key (see Section 2 of [RFC8132]) does not change when multiple
+   Cache-Key (see [RFC8132], Section 2) does not change when multiple
    DNS queries for the same DNS data, carried in CoAP requests, are
    issued.
 
