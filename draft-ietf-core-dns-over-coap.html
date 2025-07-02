@@ -1055,11 +1055,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">DoC</td>
-<td class="right">June 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lenders, et al.</td>
-<td class="center">Expires 21 December 2025</td>
+<td class="center">Expires 3 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-core-dns-over-coap-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-06-19" class="published">19 June 2025</time>
+<time datetime="2025-07-02" class="published">2 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-12-21">21 December 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-03">3 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 December 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1549,7 +1549,7 @@ octets and do not contain bytes that need escaping.<a href="#section-3.2-3" clas
 The construction algorithm for DoC requests is as follows, going through the provided records in order of their priority.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-5.1">
-            <p id="section-3.2-5.1.1">If the "alpn" SvcParam value for the service is "coap", a CoAP request for CoAP over TLS <span class="bcp14">MUST</span> be construct.
+            <p id="section-3.2-5.1.1">If the "alpn" SvcParam value for the service is "coap", a CoAP request for CoAP over TLS <span class="bcp14">MUST</span> be constructed.
 If it is "co", a CoAP request for CoAP over DTLS <span class="bcp14">MUST</span> be constructed.
 Any other SvcParamKeys specifying a transport are out of the scope of this document.<a href="#section-3.2-5.1.1" class="pilcrow">¶</a></p>
 </li>
@@ -1718,7 +1718,7 @@ The same applies for DNS responses that for any reason do not carry any records 
           </h4>
 <p id="section-4.3.3-1">The following example illustrates the response to the query "example.org. IN
 AAAA record", with recursion turned on. Successful responses carry one answer
-record including address 2001:db8:1::1:2:3:4 and TTL 79689.<a href="#section-4.3.3-1" class="pilcrow">¶</a></p>
+record including address 2001:db8:1:0:1:2:3:4 and TTL 79689.<a href="#section-4.3.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3.3-2">A successful response:<a href="#section-4.3.3-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.3.3-3">
 <pre>
@@ -1732,7 +1732,7 @@ Payload (human-readable):
   ;; QUESTION SECTION:
   ;example.org.                 IN      AAAA
   ;; ANSWER SECTION:
-  ;example.org.         79689   IN      AAAA    2001:db8:1::1:2:3:4
+  ;example.org.         79689   IN      AAAA    2001:db8:1:0:1:2:3:4
 </pre><a href="#section-4.3.3-3" class="pilcrow">¶</a>
 </div>
 <p id="section-4.3.3-4">When a DNS error—NxDomain (RCODE = 3) for "does.not.exist" in this case—is noted in the DNS response, the CoAP response still indicates success.<a href="#section-4.3.3-4" class="pilcrow">¶</a></p>
@@ -1843,7 +1843,7 @@ mapping between any other pair of DNS transports.<a href="#section-5.3-1" class=
 Without secure communication, many possible attacks need to be evaluated in the context of
 the application's threat model.
 This includes known threats for unprotected DNS <span>[<a href="#RFC3833" class="cite xref">RFC3833</a>]</span> <span>[<a href="#RFC9076" class="cite xref">RFC9076</a>]</span> and CoAP <span><a href="https://rfc-editor.org/rfc/rfc7252#section-11" class="relref">Section 11</a> of [<a href="#RFC7252" class="cite xref">RFC7252</a>]</span>.
-While DoC does not use the random ID of the DNS header (see Section <a href="#sec_req-caching" class="auto internal xref">Section 4.2.2</a>), equivalent protection against off-path poisoning attacks is achieved by using random large token values for unprotected CoAP request.
+While DoC does not use the random ID of the DNS header (see Section <a href="#sec_req-caching" class="auto internal xref">Section 4.2.2</a>), equivalent protection against off-path poisoning attacks is achieved by using random large token values for unprotected CoAP requests.
 If a DoC message is unprotected it <span class="bcp14">MUST</span> use a random token of at least 2 bytes length to mitigate this kind of poisoning attacks.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1955,7 +1955,7 @@ Python</a>.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 DoC also inherits the security considerations of the protocols used for secure communication, e.g., OSCORE (<span>[<a href="#RFC8613" class="cite xref">RFC8613</a>], <a href="https://rfc-editor.org/rfc/rfc8613#section-12" class="relref">Section 12</a></span>) or DTLS (<span>[<a href="#RFC6347" class="cite xref">RFC6347</a>], <a href="https://rfc-editor.org/rfc/rfc6347#section-5" class="relref">Section 5</a></span> and <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>], <a href="https://rfc-editor.org/rfc/rfc9147#section-11" class="relref">Section 11</a></span>).
 Additionally, DoC uses request patterns that require the maintenance of long-lived security
 contexts.
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-01#section-2.6" class="relref">Section 2.6</a> of [<a href="#I-D.ietf-core-corr-clar" class="cite xref">I-D.ietf-core-corr-clar</a>]</span> provides insights on what can be done when those are resumed from a new endpoint.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-02#section-2.6" class="relref">Section 2.6</a> of [<a href="#I-D.ietf-core-corr-clar" class="cite xref">I-D.ietf-core-corr-clar</a>]</span> provides insights on what can be done when those are resumed from a new endpoint.<a href="#section-8-1" class="pilcrow">¶</a></p>
 <p id="section-8-2">When using unprotected CoAP (see <a href="#sec_unprotected-coap" class="auto internal xref">Section 6</a>), setting the ID of a DNS message to 0 as
 specified in <a href="#sec_req-caching" class="auto internal xref">Section 4.2.2</a> opens the DNS cache of a DoC client to cache poisoning attacks
 via response spoofing.
@@ -2161,7 +2161,7 @@ The definition of this parameter can be found in <a href="#sec_doc-server-select
 <dd class="break"></dd>
 <dt id="I-D.ietf-core-corr-clar">[I-D.ietf-core-corr-clar]</dt>
         <dd>
-<span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"Constrained Application Protocol (CoAP): Corrections and Clarifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-corr-clar-01</span>, <time datetime="2024-12-18" class="refDate">18 December 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-01">https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"Constrained Application Protocol (CoAP): Corrections and Clarifications"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-core-corr-clar-02</span>, <time datetime="2025-06-20" class="refDate">20 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-02">https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-core-href">[I-D.ietf-core-href]</dt>
         <dd>
@@ -2613,7 +2613,7 @@ section as a consequence<a href="#appendix-B.4-1.6.1" class="pilcrow">¶</a></p>
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-C-1">The authors of this document want to thank Carsten Bormann, Esko Dijk, Thomas Fossati, Mikolai Gütschow, Ben Schwartz, Marco Tiloca, and Tim Wicinski for their feedback and comments.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The authors of this document want to thank Mike Bishop, Carsten Bormann, Elwyn B. Davies, Esko Dijk, Thomas Fossati, Mikolai Gütschow, Todd Herr, Ben Schwartz, Marco Tiloca, and Tim Wicinski for their feedback and comments.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
