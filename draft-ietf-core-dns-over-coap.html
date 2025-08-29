@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Lenders, et al.</td>
-<td class="center">Expires 21 February 2026</td>
+<td class="center">Expires 2 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-core-dns-over-coap-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-08-20" class="published">20 August 2025</time>
+<time datetime="2025-08-29" class="published">29 August 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-02-21">21 February 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-02">2 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 February 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1366,9 +1366,9 @@ constrained devices in the Internet of Things (IoT).<a href="#section-abstract-1
 <p id="section-1-1">This document defines DNS over CoAP (DoC), a protocol to send DNS
 <span>[<a href="#STD13" class="cite xref">STD13</a>]</span> queries and get DNS responses over the Constrained Application
 Protocol (CoAP) <span>[<a href="#RFC7252" class="cite xref">RFC7252</a>]</span> using OPCODE 0 (Query). Each DNS query-response pair is mapped into a
-CoAP message exchange. Each CoAP message can be secured by DTLS <span>[<a href="#RFC6347" class="cite xref">RFC6347</a>]</span> <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>]</span> or
-Object Security for Constrained RESTful Environments (OSCORE) <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span>
-but also TLS <span>[<a href="#RFC8323" class="cite xref">RFC8323</a>]</span> <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>
+CoAP message exchange. Each CoAP message can be secured by DTLS 1.2 or newer <span>[<a href="#RFC6347" class="cite xref">RFC6347</a>]</span> <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>]</span>
+as well as Object Security for Constrained RESTful Environments (OSCORE) <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span>
+but also TLS 1.3 or newer <span>[<a href="#RFC8323" class="cite xref">RFC8323</a>]</span> <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>
 to ensure message integrity and confidentiality.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The application use case of DoC is inspired by DNS over HTTPS <span>[<a href="#RFC8484" class="cite xref">RFC8484</a>]</span>
 (DoH). DoC, however, aims for deployment in the constrained Internet of
@@ -1522,7 +1522,7 @@ Possible options to assure this could be manual configuration of a Uniform Resou
 or automatic configuration, e.g., using a CoRE resource directory
 <span>[<a href="#RFC9176" class="cite xref">RFC9176</a>]</span>, DHCP or Router Advertisement options <span>[<a href="#RFC9463" class="cite xref">RFC9463</a>]</span>, or discovery of designated resolvers
 <span>[<a href="#RFC9462" class="cite xref">RFC9462</a>]</span>.
-Automatic configuration <span class="bcp14">SHOULD</span> only be done from a trusted source.<a href="#section-3-2" class="pilcrow">¶</a></p>
+Automatic configuration <span class="bcp14">MUST</span> only be done from a trusted source.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <div id="discovery-by-resource-type">
 <section id="section-3.1">
         <h3 id="name-discovery-by-resource-type">
@@ -1566,7 +1566,7 @@ Paths with longer segments cannot be advertised with the "docpath" SvcParam and 
 of 0 or more docpath-segments.
 The root path "/" is represented by 0 docpath-segments, i.e., an empty list.
 The same considerations for the "," and "" characters in docpath-segments for zone-file
-implementations as for the alpn-ids in an "alpn" SvcParam <span class="bcp14">MAY</span> apply (<span><a href="https://rfc-editor.org/rfc/rfc9460#section-7.1.1" class="relref">Section 7.1.1</a> of [<a href="#RFC9460" class="cite xref">RFC9460</a>]</span>).<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+implementations as for the alpn-ids in an "alpn" SvcParam apply (<span><a href="https://rfc-editor.org/rfc/rfc9460#section-7.1.1" class="relref">Section 7.1.1</a> of [<a href="#RFC9460" class="cite xref">RFC9460</a>]</span>).<a href="#section-3.2-7" class="pilcrow">¶</a></p>
 <p id="section-3.2-8">The wire-format value for "docpath" consists of 0 or more sequences of octets prefixed by their
 respective length as a single octet.
 We call this single octet the length octet.
@@ -1586,12 +1586,13 @@ option, provided the docpath-segments are all of a length between 0 and 12 octet
 Likewise, it can be transferred into a URI path-abempty form by replacing each length octet with the "/" character
 None of the abovementioned prevent longer docpath-segments than the considered, they just make the
 translation harder, as they require to make space for the longer delimiters, in turn requiring to move octets.<a href="#section-3.2-9" class="pilcrow">¶</a></p>
-<p id="section-3.2-10">To use the service binding from an SVCB RR, the DoC client <span class="bcp14">MUST</span> send a DoC request constructed from the SvcParams including "docpath".
-The construction algorithm for DoC requests is as follows, going through the provided records in order of their priority.<a href="#section-3.2-10" class="pilcrow">¶</a></p>
+<p id="section-3.2-10">To use the service binding from an SVCB RR or DNR Encrypted DNS option, the DoC client <span class="bcp14">MUST</span> send a DoC request constructed from the SvcParams including "docpath".
+The construction algorithm for DoC requests is as follows, going through the provided records in order of their priority.
+For the purposes of this algorithm, the DoC client is assumed to be SVCB-optional (see <span><a href="https://rfc-editor.org/rfc/rfc9460#section-3" class="relref">Section 3</a> of [<a href="#RFC9460" class="cite xref">RFC9460</a>]</span>).<a href="#section-3.2-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-11.1">
-            <p id="section-3.2-11.1.1">If the "alpn" SvcParam value for the service is "coap", a CoAP request for CoAP over TLS <span class="bcp14">MUST</span> be constructed.
-If it is "co", a CoAP request for CoAP over DTLS <span class="bcp14">MUST</span> be constructed.
+            <p id="section-3.2-11.1.1">If the "alpn" SvcParam value for the service is "coap", a CoAP request for CoAP over TLS <span class="bcp14">MUST</span> be constructed <span>[<a href="#RFC8323" class="cite xref">RFC8323</a>]</span>.
+If it is "co", a CoAP request for CoAP over DTLS <span class="bcp14">MUST</span> be constructed <span>[<a href="#I-D.ietf-core-coap-dtls-alpn" class="cite xref">I-D.ietf-core-coap-dtls-alpn</a>]</span>.
 Any other SvcParamKeys specifying a transport are out of the scope of this document.<a href="#section-3.2-11.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-11.2">
@@ -1619,7 +1620,7 @@ or by setting the Uri-Host option on each request.<a href="#section-3.2-11.4.1" 
 </li>
           <li class="normal" id="section-3.2-11.6">
             <p id="section-3.2-11.6.1">If the request constructed this way receives a response, the same SVCB record <span class="bcp14">MUST</span> be used for construction of future DoC queries.
-If not, or if the endpoint becomes unreachable, the algorithm <span class="bcp14">SHOULD</span> be repeated with the SVCB record with the next highest priority.<a href="#section-3.2-11.6.1" class="pilcrow">¶</a></p>
+If not, or if the endpoint becomes unreachable, the algorithm repeats with the SVCB RR or DNR Encrypted DNS option with the next highest Service Priority as a fallback (see Sections <a href="https://rfc-editor.org/rfc/rfc9460#section-2.4.1" class="relref">2.4.1</a> and <a href="https://rfc-editor.org/rfc/rfc9460#section-3" class="relref">3</a> of <span>[<a href="#RFC9460" class="cite xref">RFC9460</a>]</span>).<a href="#section-3.2-11.6.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.2-12">A more generalized construction algorithm for any CoAP request can be found in <span>[<a href="#I-D.ietf-core-transport-indication" class="cite xref">I-D.ietf-core-transport-indication</a>]</span>.<a href="#section-3.2-12" class="pilcrow">¶</a></p>
@@ -1631,7 +1632,7 @@ If not, or if the endpoint becomes unreachable, the algorithm <span class="bcp14
 <p id="section-3.2.1-1"><span class="cref" id="replace-hex">RFC Ed.: Since the number for "docpath" was not assigned at the time of writing, we
 used the hex <code>ff 0a</code> (in decimal 65290; from the private use range of SvcParamKeys) throughout
 this section. Before publication, please replace <code>ff 0a</code> with the hexadecimal representation of
-the final value assigned by IANA in this section.</span><a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
+the final value assigned by IANA in this section. Please remove this paragraph after that.</span><a href="#section-3.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-3.2.1-2">A typical SVCB resource record response for a DoC server at the root path "/" of the server looks
 like the following (the "docpath" SvcParam is the last 4 bytes <code>ff 0a 00 00</code> in the binary):<a href="#section-3.2.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.2.1-3">
@@ -1787,8 +1788,8 @@ Payload (human-readable):
 DNS responses are provided in the body of the CoAP response, i.e., it is also possible to transfer them using block-wise transfer <span>[<a href="#RFC7959" class="cite xref">RFC7959</a>]</span>.
 A DoC server <span class="bcp14">MUST</span> be able to produce responses in the "application/dns-message"
 Content-Format (for details, see <a href="#sec_content-format" class="auto internal xref">Section 4.1</a>) when requested.
-A DoC client <span class="bcp14">MUST</span> be able to understand responses in the "application/dns-message" Content-Format
-when it does not send an Accept option.
+The use of the Accept option in the request is optional.
+However, all DoC clients <span class="bcp14">MUST</span> be able to parse a "application/dns-message" response (see also <a href="#sec_content-format" class="auto internal xref">Section 4.1</a>).
 Any response Content-Format other than "application/dns-message" <span class="bcp14">MUST</span> be indicated with
 the Content-Format option by the DoC server.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <div id="response-codes-and-handling-dns-and-coap-errors">
@@ -1913,18 +1914,24 @@ However, it results in additional overhead, which conflicts with constrained res
 This is the reason why it is <span class="bcp14">RECOMMENDED</span> to use CoAP Observe <span>[<a href="#RFC7641" class="cite xref">RFC7641</a>]</span> instead of DNS Push
 in the DoC domain.
 The DoC server <span class="bcp14">SHOULD</span> provide Observe capabilities on its DoC resource and do as follows.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.1-2">If the CoAP request indicates that the DoC client wants to observe a resource record, a DoC server
-<span class="bcp14">MAY</span> use a DNS Subscribe message instead of a classic DNS query to fetch the
+<p id="section-5.1-2">A DoC server
+<span class="bcp14">MAY</span> subscribe to DNS push notifications,
+which involves sending a DNS Subscribe message (see (<span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.2" class="relref">Section 6.2</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>),
+instead of a classic DNS query to fetch the
 information on behalf of a DoC client.
-If this is not supported by the DoC server, it <span class="bcp14">MUST</span> act as if the DoC resource were not observable.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+This is particularly useful
+when a CoAP request indicates that the DoC client wants to observe a resource record,
+or when a short-lived record is requested frequently.
+After the list of observers for a particular DNS query has become empty
+(by explicit or implicit cancellation of the observation as per <span><a href="https://rfc-editor.org/rfc/rfc7641#section-3.6" class="relref">Section 3.6</a> of [<a href="#RFC7641" class="cite xref">RFC7641</a>]</span>),
+and no other reason to subscribe to that request is present,
+the DoC server <span class="bcp14">SHOULD</span> cancel the corresponding subscription.
+This can involve sending an DNS Unsubscribe message or closing the session (see <span><a href="https://rfc-editor.org/rfc/rfc8765#section-6.4" class="relref">Section 6.4</a> of [<a href="#RFC8765" class="cite xref">RFC8765</a>]</span>).<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Whenever the DoC server receives a DNS Push message from the DNS
 infrastructure for an observed resource record, the DoC server sends an appropriate Observe notification response
 to the DoC client.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
-<p id="section-5.1-4">If no more DoC clients observe a resource record for which the DoC server has an open subscription,
-the DoC server <span class="bcp14">MUST</span> use a DNS Unsubscribe message to close its subscription to the
-resource record as well.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">A DoC server can still provide Observe capabilities to its DoC resource without providing this
-proxying to DNS Push, e.g., if it receives new information on a record through other means.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<p id="section-5.1-4">A server that cannot proxy to DNS Push (or any other means of obtaining new records) should not send the response as a notification
+(i.e., it should not send the Observe option).<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="oscore">
@@ -1944,8 +1951,7 @@ the corresponding implications on message sizes and security properties.<a href=
         <h3 id="name-mapping-doc-to-doh">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-mapping-doc-to-doh" class="section-name selfRef">Mapping DoC to DoH</a>
         </h3>
-<p id="section-5.3-1">This document provides no specification on how to map between DoC and DoH, e.g., at a CoAP-to-HTTP-proxy.
-In fact, such a direct mapping is <span class="bcp14">NOT RECOMMENDED</span>:
+<p id="section-5.3-1">This document provides no specification on how to map between DoC and DoH, e.g., at a CoAP-to-HTTP-proxy; such a direct mapping is <span class="bcp14">NOT RECOMMENDED</span>:
 rewriting the FETCH method (<a href="#sec_queries" class="auto internal xref">Section 4.2</a>) and the TTL rewriting (<a href="#sec_resp-caching" class="auto internal xref">Section 4.3.2</a>) as
 specified in this draft would be non-trivial.
 It is <span class="bcp14">RECOMMENDED</span> to use a DNS forwarder to map between DoC and DoH, as would be the case for
@@ -1964,7 +1970,7 @@ Without secure communication, many possible attacks need to be evaluated in the 
 the application's threat model.
 This includes known threats for unprotected DNS <span>[<a href="#RFC3833" class="cite xref">RFC3833</a>]</span> <span>[<a href="#RFC9076" class="cite xref">RFC9076</a>]</span> and CoAP <span><a href="https://rfc-editor.org/rfc/rfc7252#section-11" class="relref">Section 11</a> of [<a href="#RFC7252" class="cite xref">RFC7252</a>]</span>.
 While DoC does not use the random ID of the DNS header (see <a href="#sec_req-caching" class="auto internal xref">Section 4.2.2</a>), equivalent protection against off-path poisoning attacks is achieved by using random large token values for unprotected CoAP requests.
-If a DoC message is unprotected it <span class="bcp14">MUST</span> use a random token of at least 2 bytes length to mitigate this kind of poisoning attacks.<a href="#section-6-1" class="pilcrow">¶</a></p>
+If a DoC message is unprotected it <span class="bcp14">MUST</span> use a random token of at least 2 bytes length to mitigate this kind of poisoning attack.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="implementation-status">
@@ -2072,7 +2078,7 @@ Python</a>.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-8-1">General CoAP security considerations (<span>[<a href="#RFC7252" class="cite xref">RFC7252</a>], <a href="https://rfc-editor.org/rfc/rfc7252#section-11" class="relref">Section 11</a></span>) apply to DoC.
-DoC also inherits the security considerations of the protocols used for secure communication, e.g., OSCORE (<span>[<a href="#RFC8613" class="cite xref">RFC8613</a>], <a href="https://rfc-editor.org/rfc/rfc8613#section-12" class="relref">Section 12</a></span>) or DTLS (<span>[<a href="#RFC6347" class="cite xref">RFC6347</a>], <a href="https://rfc-editor.org/rfc/rfc6347#section-5" class="relref">Section 5</a></span> and <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>], <a href="https://rfc-editor.org/rfc/rfc9147#section-11" class="relref">Section 11</a></span>).
+DoC also inherits the security considerations of the protocols used for secure communication, e.g., OSCORE (<span>[<a href="#RFC8613" class="cite xref">RFC8613</a>], <a href="https://rfc-editor.org/rfc/rfc8613#section-12" class="relref">Section 12</a></span>) as well as DTLS 1.2 or newer (<span>[<a href="#RFC6347" class="cite xref">RFC6347</a>], <a href="https://rfc-editor.org/rfc/rfc6347#section-5" class="relref">Section 5</a></span> <span>[<a href="#RFC9147" class="cite xref">RFC9147</a>], <a href="https://rfc-editor.org/rfc/rfc9147#section-11" class="relref">Section 11</a></span>).
 Additionally, DoC uses request patterns that require the maintenance of long-lived security
 contexts.
 <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-core-corr-clar-02#section-2.6" class="relref">Section 2.6</a> of [<a href="#I-D.ietf-core-corr-clar" class="cite xref">I-D.ietf-core-corr-clar</a>]</span> provides insights on what can be done when those are resumed from a new endpoint.<a href="#section-8-1" class="pilcrow">¶</a></p>
@@ -2085,8 +2091,8 @@ specified in <a href="#sec_req-caching" class="auto internal xref">Section 4.2.2
 via response spoofing.
 This document requires an unpredictable CoAP token in each DoC query from the client when CoAP is
 not secured to mitigate such an attack over DoC (see <a href="#sec_unprotected-coap" class="auto internal xref">Section 6</a>).<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">For secure communication via DTLS or OSCORE, the impact of a fixed ID on security is limited, as both
-harden against injecting spoofed responses.
+<p id="section-8-4">For secure communication via (D)TLS or OSCORE, an unpredictable ID against spoofing is not necessary.
+Both (D)TLS and OSCORE offer mechanisms to harden against injecting spoofed responses in their protocol design.
 Consequently, the ID of the DNS message can be set to 0 without any concern in order to leverage the advantages of CoAP caching.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">A DoC client must be aware that the DoC server
 may communicate unprotected with the upstream DNS infrastructure, e.g., using DNS over UDP.
@@ -2094,7 +2100,7 @@ DoC can only guarantee confidentiality and integrity of communication between pa
 security context is exchanged.
 The DoC server may use another security context to communicate upstream with both confidentiality and integrity
 (e.g., DNS over QUIC <span>[<a href="#RFC9250" class="cite xref">RFC9250</a>]</span>), but, while recommended, this is opaque to the DoC client on the protocol level.
-Record integrity can also be ensured upstream using, e.g., DNSSEC <span>[<a href="#BCP237" class="cite xref">BCP237</a>]</span>.<a href="#section-8-5" class="pilcrow">¶</a></p>
+Record integrity can also be ensured upstream using DNSSEC <span>[<a href="#BCP237" class="cite xref">BCP237</a>]</span>.<a href="#section-8-5" class="pilcrow">¶</a></p>
 <p id="section-8-6">A DoC client may not be able to perform DNSSEC validation,
 e.g., due to code size constraints, or due to the size of the responses.
 It may trust its DoC server to perform DNSSEC validation;
